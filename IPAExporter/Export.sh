@@ -14,8 +14,8 @@ echo "*********************************"
 echo "Beginning Build Process"
 echo "*********************************"
 
-#xcodebuild -exportArchive -exportFormat ipa -archivePath "${1}" -exportPath "${2}" -exportProvisioningProfile "${3}" -exportSigningIdentity "${4}"
-xcrun -sdk iphoneos PackageApplication -v "${1}" -o "${2}" --sign "${3}" --embed "${4}"
+xcodebuild -exportArchive -exportFormat ipa -archivePath "${1}" -exportPath "${2}" -exportProvisioningProfile "${3}" #-exportSigningIdentity "${4}"
+#xcrun -sdk iphoneos PackageApplication -v "${1}" -o "${2}" --sign "${3}" --embed "${4}"
 
 
 echo "*********************************"

@@ -175,14 +175,17 @@
     NSBundle *bundle = self.plugInBundle ? self.plugInBundle : [NSBundle mainBundle];
     NSString *exportCommand = [bundle pathForResource:@"Export" ofType:@"sh"];
     NSString *appPath = self.archive.absoluteApplicationPath;
+    NSString *archivePath = self.archive.path;
     NSString *desticationPath = self.destinationTextField.stringValue;
-    NSString *provisionName = selectedIdentity.provision.path;
+    //NSString *provisionName = selectedIdentity.provision.path;
+    NSString *provisionName = selectedIdentity.provision.name;
     NSString *identityName = selectedIdentity.commonName;
     
     NSTask *exportTask = [NSTask new];
     self.exportingTask = exportTask;
     [exportTask setLaunchPath:exportCommand];
-    [exportTask setArguments:@[appPath, desticationPath, identityName, provisionName]];
+    //[exportTask setArguments:@[appPath, desticationPath, identityName, provisionName]];
+    [exportTask setArguments:@[archivePath, desticationPath, provisionName]];
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         [exportTask launch];
